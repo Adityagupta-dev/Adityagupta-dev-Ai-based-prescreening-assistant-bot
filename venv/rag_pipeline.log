@@ -1,0 +1,130 @@
+2025-02-14 20:56:28,626 - src.rag_pipeline - ERROR - Error initializing ChromaDB: Could not import sentence_transformers python package. Please install it with `pip install sentence-transformers`.
+2025-02-14 21:05:18,882 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-02-14 21:05:18,882 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-02-14 21:05:29,896 - src.rag_pipeline - ERROR - Error initializing ChromaDB: Expected EmbeddingFunction.__call__ to have the following signature: odict_keys(['self', 'input']), got odict_keys(['args', 'kwargs'])
+Please see https://docs.trychroma.com/guides/embeddings for details of the EmbeddingFunction interface.
+Please note the recent change to the EmbeddingFunction interface: https://docs.trychroma.com/deployment/migration#migration-to-0.4.16---november-7,-2023 
+
+2025-02-14 21:10:30,896 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+2025-02-14 21:10:34,279 - src.rag_pipeline - INFO - Loaded 18 questions into ChromaDB
+2025-02-14 21:10:34,279 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:10:34,349 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:10:44,311 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:10:44,311 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:29:32,308 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:29:32,309 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:29:35,199 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:29:35,200 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:29:35,408 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:29:35,408 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:29:35,411 - src.rag_pipeline - ERROR - Error getting question: Expected where to have exactly one operator, got {'role': 'Software Developer', 'complexity': 1} in query.
+2025-02-14 21:29:43,009 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:29:43,009 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:29:47,740 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:29:47,740 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:29:48,307 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:29:48,307 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:29:48,594 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:29:48,595 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:29:48,597 - src.rag_pipeline - ERROR - Error getting question: Expected where to have exactly one operator, got {'role': 'Python Developer', 'complexity': 1} in query.
+2025-02-14 21:31:55,200 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:31:55,201 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:31:56,996 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:31:56,996 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:31:57,158 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:31:57,158 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:32:10,943 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:32:10,943 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:32:11,158 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:32:11,158 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:32:16,414 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:32:16,414 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:32:51,936 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:32:51,937 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:32:52,113 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:32:52,115 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:33:27,841 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:33:27,841 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:33:28,029 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:33:28,029 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:33:33,221 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:33:33,221 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:33:52,750 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:33:52,750 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:33:52,923 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:33:52,923 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:33:57,279 - src.rag_pipeline - ERROR - Error parsing LLM response
+2025-02-14 21:34:00,513 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:34:00,514 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:34:06,601 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:34:06,601 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:34:18,269 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:34:18,269 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:34:18,443 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:34:18,443 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:34:21,592 - src.rag_pipeline - ERROR - Error parsing LLM response
+2025-02-14 21:34:24,788 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:34:24,788 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:34:28,515 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:34:28,515 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:34:29,020 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:34:29,020 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:34:32,173 - src.rag_pipeline - ERROR - Error parsing LLM response
+2025-02-14 21:34:35,356 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:34:35,357 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:37:51,389 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:37:51,390 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:37:55,135 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:37:55,135 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:37:56,384 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:37:56,384 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:37:56,626 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:37:56,627 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:38:14,830 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:38:14,830 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:38:15,105 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:38:15,106 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:38:20,690 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:38:20,692 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:38:39,893 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:38:39,894 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:38:40,147 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:38:40,147 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:38:44,296 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:38:44,296 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:39:13,592 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:39:13,593 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:39:13,831 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:39:13,832 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:39:18,878 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:39:18,879 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:39:37,210 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:39:37,211 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:39:37,439 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:39:37,439 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:39:37,660 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:39:37,660 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:39:56,685 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:39:56,685 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:39:56,894 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:39:56,894 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:40:01,068 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:40:01,068 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:40:06,242 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:40:06,243 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:40:06,484 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:40:06,485 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 21:40:10,554 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 21:40:10,555 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 22:00:19,820 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 22:00:19,821 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 22:02:15,230 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 22:02:15,230 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 22:02:49,459 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 22:02:49,459 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 22:02:49,646 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 22:02:49,647 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 22:03:02,877 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 22:03:02,877 - src.rag_pipeline - INFO - Model initialized: Gemini
+2025-02-14 22:03:03,051 - src.rag_pipeline - INFO - ChromaDB initialized successfully
+2025-02-14 22:03:03,051 - src.rag_pipeline - INFO - Model initialized: Gemini
