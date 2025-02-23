@@ -24,7 +24,7 @@ cffi @ file:///C:/b/abs_90yq4lmu83/croot/cffi_1726856448345/work
 charset-normalizer==3.4.1
 chex==0.1.88
 chroma-hnswlib==0.7.6
-chromadb==0.6.3
+chromadb
 click==8.1.8
 cloudpathlib @ file:///C:/b/abs_049y1lewoy/croot/cloudpathlib_1704812313028/work
 colorama @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/colorama_1699472650914/work
