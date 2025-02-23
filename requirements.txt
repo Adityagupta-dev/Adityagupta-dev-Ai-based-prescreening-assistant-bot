@@ -72,7 +72,6 @@ markdown-it-py==3.0.0
 MarkupSafe==3.0.2
 marshmallow==3.26.1
 mdurl==0.1.2
-mkl-service==2.4.0
 ml_dtypes==0.5.0
 mmh3==5.1.0
 monotonic==1.6
