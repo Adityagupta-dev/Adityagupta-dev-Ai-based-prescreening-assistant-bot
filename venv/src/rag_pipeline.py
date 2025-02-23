@@ -1,23 +1,18 @@
-# src/rag_pipeline.py
 from typing import Tuple, Optional, Dict, Any, List
-import chromadb
-from chromadb.config import Settings as ChromaSettings
-from chromadb.utils import embedding_functions
+from sentence_transformers import SentenceTransformer
+from sklearn.neighbors import NearestNeighbors
 from langchain_google_genai import GoogleGenerativeAI
 from langchain_community.llms import HuggingFaceHub
+import numpy as np
 import sys
 import os
-
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-from config.settings import get_settings, ERROR_MESSAGES
 import logging
 import json
+import pickle
 
-# Add project root to Python path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+from config.settings import get_settings, ERROR_MESSAGES
 
-# Rest of the RAGPipeline class implementation remains the same
 class RAGPipeline:
     def __init__(self):
         self.settings = get_settings()
@@ -26,9 +21,7 @@ class RAGPipeline:
         self.initialize_model()
     
     def setup_logging(self):
-    # Create logs directory if it doesn't exist
         os.makedirs('logs', exist_ok=True)
-        
         logging.basicConfig(
             level=logging.INFO,
             format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -38,80 +31,67 @@ class RAGPipeline:
     
     def initialize_db(self):
         try:
-            self.client = chromadb.Client(
-                ChromaSettings(
-                    anonymized_telemetry=False,
-                    is_persistent=False  # Use in-memory storage instead of SQLite
-                )
-            )
+            # Initialize sentence transformer
+            self.embedder = SentenceTransformer(self.settings.EMBEDDING_MODEL)
             
-            # Use ChromaDB's built-in sentence-transformers embedding function
-            sentence_transformer_ef = embedding_functions.SentenceTransformerEmbeddingFunction(
-                model_name=self.settings.EMBEDDING_MODEL
-            )
+            # Initialize or load index
+            if not self._index_exists():
+                self._create_initial_index()
+            else:
+                self._load_index()
             
-            self.collection = self.client.get_or_create_collection(
-                name=self.settings.COLLECTION_NAME,
-                embedding_function=sentence_transformer_ef,
-                metadata={"hnsw:space": "cosine"}
-            )
-            
-            # Initialize collection with questions if empty
-            if self.collection.count() == 0:
-                self._load_initial_questions()
-                
-            self.logger.info("ChromaDB initialized successfully")
+            self.logger.info("Vector store initialized successfully")
         except Exception as e:
-            self.logger.error(f"Error initializing ChromaDB: {str(e)}")
-            raise
-            
-            # Use ChromaDB's built-in sentence-transformers embedding function
-            sentence_transformer_ef = embedding_functions.SentenceTransformerEmbeddingFunction(
-                model_name=self.settings.EMBEDDING_MODEL
-            )
-            
-            self.collection = self.client.get_or_create_collection(
-                name=self.settings.COLLECTION_NAME,
-                embedding_function=sentence_transformer_ef,
-                metadata={"hnsw:space": "cosine"}
-            )
-            
-            # Initialize collection with questions if empty
-            if self.collection.count() == 0:
-                self._load_initial_questions()
-                
-            self.logger.info("ChromaDB initialized successfully")
-        except Exception as e:
-            self.logger.error(f"Error initializing ChromaDB: {str(e)}")
+            self.logger.error(f"Error initializing vector store: {str(e)}")
             raise
     
-    def _load_initial_questions(self):
-        """Load initial questions from question bank into ChromaDB."""
+    def _index_exists(self) -> bool:
+        """Check if index files exist"""
+        return (os.path.exists("vector_store/knn_index.pkl") and 
+                os.path.exists("vector_store/embeddings.npy") and 
+                os.path.exists("vector_store/metadata.pkl"))
+    
+    def _create_initial_index(self):
+        """Create initial index from question bank"""
         from data.question_bank import QUESTION_BANK
         
-        documents = []
-        metadatas = []
-        ids = []
-        id_counter = 0
+        os.makedirs("vector_store", exist_ok=True)
+        texts = []
+        self.metadata_list = []
         
         for role, complexities in QUESTION_BANK.items():
             for complexity, questions in complexities.items():
                 for question, answer in questions:
-                    documents.append(question)
-                    metadatas.append({
+                    texts.append(question)
+                    self.metadata_list.append({
                         "role": role,
                         "complexity": complexity,
                         "correct_answer": answer
                     })
-                    ids.append(f"q_{id_counter}")
-                    id_counter += 1
         
-        self.collection.add(
-            documents=documents,
-            metadatas=metadatas,
-            ids=ids
-        )
-        self.logger.info(f"Loaded {len(documents)} questions into ChromaDB")
+        # Create embeddings
+        self.embeddings = self.embedder.encode(texts)
+        
+        # Initialize and fit NearestNeighbors
+        self.knn = NearestNeighbors(n_neighbors=5, metric='cosine')
+        self.knn.fit(self.embeddings)
+        
+        # Save everything
+        with open("vector_store/knn_index.pkl", "wb") as f:
+            pickle.dump(self.knn, f)
+        np.save("vector_store/embeddings.npy", self.embeddings)
+        with open("vector_store/metadata.pkl", "wb") as f:
+            pickle.dump(self.metadata_list, f)
+            
+        self.logger.info(f"Created index with {len(texts)} questions")
+    
+    def _load_index(self):
+        """Load existing index"""
+        with open("vector_store/knn_index.pkl", "rb") as f:
+            self.knn = pickle.load(f)
+        self.embeddings = np.load("vector_store/embeddings.npy")
+        with open("vector_store/metadata.pkl", "rb") as f:
+            self.metadata_list = pickle.load(f)
     
     def initialize_model(self):
         try:
@@ -132,17 +112,14 @@ class RAGPipeline:
     
     def get_question(self, role: str, complexity: float) -> Tuple[Optional[str], Optional[Dict[str, Any]]]:
         try:
-            # Convert complexity to integer since question bank uses integer keys
             complexity_level = int(complexity)
             
-            # Direct lookup from question bank instead of using ChromaDB query
+            # Direct lookup from question bank for simplicity and reliability
             from data.question_bank import QUESTION_BANK
             
             if role in QUESTION_BANK and complexity_level in QUESTION_BANK[role]:
-                # Get questions for this role and complexity
                 questions = QUESTION_BANK[role][complexity_level]
                 
-                # If there are questions available, return a random one
                 if questions:
                     import random
                     question, answer = random.choice(questions)
@@ -196,7 +173,7 @@ class RAGPipeline:
                 self.logger.error(f"Error parsing LLM response: {str(e)}")
                 return (
                     "Your answer has been recorded, but there was an error in generating detailed feedback. Please continue with the next question.",
-                    0.5,  # Neutral score when evaluation fails
+                    0.5,
                     None
                 )
                     
