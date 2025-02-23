@@ -548,7 +548,7 @@ class PrescreeningUI:
             padding: 20px;
             margin: 20px 0;
             border-radius: 10px;
-            background-color: #f0f2f6;
+            background-color: #042d80;
         }
         .score-card {
             padding: 20px;
